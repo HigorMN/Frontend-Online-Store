@@ -1,14 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { getProductsFromCategoryAndQuery, getCategories } from './services/api';
 
 function App() {
-  getProductsFromCategoryAndQuery().then((categories) => {
-    console.log(categories);
-    getCategories().then((categories) => {
-      console.log(categories);
-  });
   return (
     <div className="App">
       <header className="App-header">
