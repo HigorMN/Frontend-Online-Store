@@ -18,7 +18,12 @@ export default class Header extends React.Component {
         </form>
         <nav>
           <Link to="/cart" data-testid="shopping-cart-button">
-            Carrinho
+            <img
+              width="50"
+              height="50"
+              src="https://images-ext-1.discordapp.net/external/W35H3hl6dwLex3iaIdbhQbJCV9dqo1WjIBWwP_8CIeM/https/static.vecteezy.com/system/resources/previews/004/999/463/original/shopping-cart-icon-illustration-free-vector.jpg?width=793&height=660"
+              alt="Cart-img"
+            />
           </Link>
         </nav>
       </div>
