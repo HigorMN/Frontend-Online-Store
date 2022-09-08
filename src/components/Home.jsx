@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 
-export default class Search extends Component {
+export default class Home extends Component {
   state = {
     search: '',
     cards: [],
-    // name: '',
-    // image: '',
-    // price: '',
   };
 
   onInputChange = ({ target }) => {
@@ -15,10 +12,6 @@ export default class Search extends Component {
     const value = type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
   };
-
-  // searchEmpty = () => {
-
-  // };
 
   handleClick = async () => {
     const { search } = this.state;
@@ -55,23 +48,20 @@ export default class Search extends Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>)}
 
-        { cards.length === zero
-          ? (<p>{string}</p>)
-          : (
-            <div
-              data-testid="product"
-            >
-              { cards.map((product) => (
-                <div
-                  data-testid="product"
-                  key={ product.id }
-                >
-                  <p>{product.title}</p>
-                  <p>{product.price}</p>
-                  <img src={ product.thumbnail } alt={ product.id } />
-                </div>))}
-            </div>)}
-
+        <div>
+          { cards.length === zero
+            ? (<p>{string}</p>)
+            : (
+              <>
+                { cards.map((product) => (
+                  <div data-testid="product" key={ product.id }>
+                    <p>{product.title}</p>
+                    <p>{product.price}</p>
+                    <img src={ product.thumbnail } alt={ product.title } />
+                  </div>))}
+              </>
+            )}
+        </div>
       </div>
     );
   }
