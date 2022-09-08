@@ -17,11 +17,10 @@ export default class Search extends Component {
 
   render() {
     const { search } = this.state;
-    //   const zero = 0
+    const zero = 0;
 
     return (
       <div>
-          { search ?  <p data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</p> };
         <form>
           <input
             type="text"
@@ -31,6 +30,10 @@ export default class Search extends Component {
             value={ search }
           />
         </form>
+        { search.length === zero && (
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>)}
       </div>
     );
   }
