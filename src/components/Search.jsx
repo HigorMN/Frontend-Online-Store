@@ -32,8 +32,8 @@ export default class Search extends Component {
           <p>Categorias</p>
           {categoriesList.map((e) => (
             <div key={ e.id }>
-              <label htmlFor={ e.id } data-testid="category">
-                <input type="radio" name={ e.name } id={ e.id } />
+              <label htmlFor="category" data-testid="category">
+                <input type="radio" name="category" id={ e.id } value={ e.id } />
                 <span>{e.name}</span>
               </label>
             </div>
