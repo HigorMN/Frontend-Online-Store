@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getCategories } from '../services/api';
 
-export default class Search extends Component {
+export default class Home extends Component {
   state = {
     search: '',
     categoriesList: [],
