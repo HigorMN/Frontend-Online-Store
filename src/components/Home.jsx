@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import {
+  getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Header from './Header';
 
 export default class Home extends Component {
@@ -26,7 +27,15 @@ export default class Home extends Component {
 
   handleClick = async () => {
     const { search } = this.state;
-    const products = await getProductsFromCategoryAndQuery(search);
+    const products = await getProductsFromCategoryAndQuery(null, search);
+    this.setState({ cards: products.results });
+  };
+
+  categoryClick = async ({ target }) => {
+    this.setState({ cards: [] });
+    const { value } = target;
+    const products = await getProductsFromCategoryAndQuery(value, null);
+    console.log(products);
     this.setState({ cards: products.results });
   };
 
@@ -48,7 +57,13 @@ export default class Home extends Component {
             {categoriesList.map((e) => (
               <div key={ e.id }>
                 <label htmlFor="category" data-testid="category">
-                  <input type="radio" name="category" id={ e.id } value={ e.id } />
+                  <input
+                    value={ e.id }
+                    type="radio"
+                    name="category"
+                    id={ e.id }
+                    onClick={ this.categoryClick }
+                  />
                   <span>{e.name}</span>
                 </label>
               </div>

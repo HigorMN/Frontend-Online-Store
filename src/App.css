@@ -5,6 +5,7 @@
 
 .header {
   align-items: center;
+  border: 1px solid black;
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -18,7 +19,7 @@
 
 .main {
   display: flex;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .categories {
@@ -43,4 +44,8 @@
   margin: 5px;
   text-align: center;
   width: 250px;
+}
+
+.products img {
+  width: 100px;
 }
