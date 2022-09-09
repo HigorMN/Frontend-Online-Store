@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
   getCategories,
   getProductsFromCategoryAndQuery,
@@ -82,11 +83,21 @@ export default class Home extends Component {
                 : (
                   <div className="product">
                     { cards.map((product) => (
-                      <div data-testid="product" key={ product.id } className="products">
-                        <p>{product.title}</p>
-                        <img src={ product.thumbnail } alt={ product.title } />
-                        <p>{product.price}</p>
-                      </div>))}
+                      <Link
+                        to={ `/ProductDetail/${product.id}` }
+                        key={ product.id }
+                        data-testid="product-detail-link"
+                      >
+                        <div
+                          data-testid="product"
+                          className="products"
+                        >
+                          <p>{product.title}</p>
+                          <img src={ product.thumbnail } alt={ product.title } />
+                          <p>{product.price}</p>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
                 )}
             </div>
