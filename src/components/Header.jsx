@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 export default class Header extends React.Component {
   render() {
-    const { search, onInputChange } = this.props;
+    const { search, onInputChange, onClick } = this.props;
     return (
-      <div>
+      <header className="header">
         <form>
           <input
             type="text"
@@ -14,7 +14,16 @@ export default class Header extends React.Component {
             id=""
             onChange={ onInputChange }
             value={ search }
+            placeholder="Digite o que você busca"
+            data-testid="query-input"
           />
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick={ onClick }
+          >
+            🔎
+          </button>
         </form>
         <nav>
           <Link to="/cart" data-testid="shopping-cart-button">
@@ -26,7 +35,7 @@ export default class Header extends React.Component {
             />
           </Link>
         </nav>
-      </div>
+      </header>
     );
   }
 }
@@ -34,4 +43,5 @@ export default class Header extends React.Component {
 Header.propTypes = {
   search: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
