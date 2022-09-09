@@ -25,6 +25,10 @@ export default class Header extends React.Component {
             🔎
           </button>
         </form>
+        <div>
+          <h1>Front-end</h1>
+          <p>online store</p>
+        </div>
         <nav>
           <Link to="/cart" data-testid="shopping-cart-button">
             <img

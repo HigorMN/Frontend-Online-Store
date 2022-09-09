@@ -36,44 +36,46 @@ export default class Home extends Component {
     const string = 'Nenhum produto foi encontrado';
 
     return (
-      <main className="main">
-        <section className="categories">
-          <p>Categorias</p>
-          {categoriesList.map((e) => (
-            <div key={ e.id }>
-              <label htmlFor="category" data-testid="category">
-                <input type="radio" name="category" id={ e.id } value={ e.id } />
-                <span>{e.name}</span>
-              </label>
-            </div>
-          ))}
-        </section>
-        <div>
-          <Header
-            search={ search }
-            onInputChange={ this.onInputChange }
-            onClick={ this.handleClick }
-          />
-          { search.length === zero && (
-            <p data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>)}
+      <>
+        <Header
+          search={ search }
+          onInputChange={ this.onInputChange }
+          onClick={ this.handleClick }
+        />
+        <main className="main">
+          <section className="categories">
+            <p>Categorias</p>
+            {categoriesList.map((e) => (
+              <div key={ e.id }>
+                <label htmlFor="category" data-testid="category">
+                  <input type="radio" name="category" id={ e.id } value={ e.id } />
+                  <span>{e.name}</span>
+                </label>
+              </div>
+            ))}
+          </section>
           <div>
-            { cards.length === zero
-              ? (<p>{string}</p>)
-              : (
-                <>
-                  { cards.map((product) => (
-                    <div data-testid="product" key={ product.id }>
-                      <p>{product.title}</p>
-                      <p>{product.price}</p>
-                      <img src={ product.thumbnail } alt={ product.title } />
-                    </div>))}
-                </>
-              )}
+            { search.length === zero && (
+              <p data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>)}
+            <div>
+              { cards.length === zero
+                ? (<p>{string}</p>)
+                : (
+                  <div className="product">
+                    { cards.map((product) => (
+                      <div data-testid="product" key={ product.id } className="products">
+                        <p>{product.title}</p>
+                        <img src={ product.thumbnail } alt={ product.title } />
+                        <p>{product.price}</p>
+                      </div>))}
+                  </div>
+                )}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </>
     );
   }
 }
