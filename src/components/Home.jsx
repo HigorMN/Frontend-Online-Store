@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getCategories } from '../services/api';
+import Header from './Header';
 
 export default class Home extends Component {
   state = {
@@ -28,6 +29,7 @@ export default class Home extends Component {
 
     return (
       <main className="main">
+        <Header search={ search } onInputChange={ this.onInputChange } />
         <section className="categories">
           <p>Categorias</p>
           {categoriesList.map((e) => (
