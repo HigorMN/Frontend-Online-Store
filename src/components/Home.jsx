@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Header from './Header';
 
 export default class Home extends Component {
   state = {
     search: '',
     categoriesList: [],
+    cards: [],
   };
 
   componentDidMount() {
@@ -23,9 +24,16 @@ export default class Home extends Component {
     this.setState({ categoriesList: categories });
   };
 
+  handleClick = async () => {
+    const { search } = this.state;
+    const products = await getProductsFromCategoryAndQuery(search);
+    this.setState({ cards: products.results });
+  };
+
   render() {
-    const { search, categoriesList } = this.state;
+    const { search, categoriesList, cards } = this.state;
     const zero = 0;
+    const string = 'Nenhum produto foi encontrado';
 
     return (
       <main className="main">
@@ -49,12 +57,34 @@ export default class Home extends Component {
               id=""
               onChange={ this.onInputChange }
               value={ search }
+              data-testid="query-input"
             />
+            <button
+              type="button"
+              data-testid="query-button"
+              onClick={ this.handleClick }
+            >
+              🔎
+            </button>
           </form>
           { search.length === zero && (
             <p data-testid="home-initial-message">
               Digite algum termo de pesquisa ou escolha uma categoria.
             </p>)}
+          <div>
+            { cards.length === zero
+              ? (<p>{string}</p>)
+              : (
+                <>
+                  { cards.map((product) => (
+                    <div data-testid="product" key={ product.id }>
+                      <p>{product.title}</p>
+                      <p>{product.price}</p>
+                      <img src={ product.thumbnail } alt={ product.title } />
+                    </div>))}
+                </>
+              )}
+          </div>
         </div>
       </main>
     );
