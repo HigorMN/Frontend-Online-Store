@@ -42,6 +42,17 @@ export default class Home extends Component {
     this.setState({ cards: products.results });
   };
 
+  getCartLocal = () => JSON.parse(localStorage.getItem('cart'));
+
+  addCardCLick = async ({ target }) => {
+    const { value } = target;
+    if (!JSON.parse(localStorage.getItem('cart'))) {
+      localStorage.setItem('cart', JSON.stringify([]));
+    }
+    const favoritos = this.getCartLocal();
+    localStorage.setItem('cart', JSON.stringify([...favoritos, value]));
+  };
+
   render() {
     const { search, categoriesList, cards, clicou } = this.state;
     const zero = 0;
@@ -83,20 +94,30 @@ export default class Home extends Component {
                 : (
                   <div className="product">
                     { cards.map((product) => (
-                      <Link
-                        to={ `/ProductDetail/${product.id}` }
-                        key={ product.id }
-                        data-testid="product-detail-link"
-                      >
-                        <div
-                          data-testid="product"
-                          className="products"
+                      <>
+                        <Link
+                          to={ `/ProductDetail/${product.id}` }
+                          key={ product.id }
+                          data-testid="product-detail-link"
                         >
-                          <p>{product.title}</p>
-                          <img src={ product.thumbnail } alt={ product.title } />
-                          <p>{product.price}</p>
-                        </div>
-                      </Link>
+                          <div
+                            data-testid="product"
+                            className="products"
+                          >
+                            <p>{product.title}</p>
+                            <img src={ product.thumbnail } alt={ product.title } />
+                            <p>{product.price}</p>
+                          </div>
+                        </Link>
+                        <button
+                          type="button"
+                          data-testid="product-add-to-cart"
+                          value={ product.id }
+                          onClick={ this.addCardCLick }
+                        >
+                          Adicionar ao Carrinho
+                        </button>
+                      </>
                     ))}
                   </div>
                 )}
