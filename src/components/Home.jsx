@@ -36,57 +36,59 @@ export default class Home extends Component {
     const string = 'Nenhum produto foi encontrado';
 
     return (
-      <main className="main">
+      <>
         <Header search={ search } onInputChange={ this.onInputChange } />
-        <section className="categories">
-          <p>Categorias</p>
-          {categoriesList.map((e) => (
-            <div key={ e.id }>
-              <label htmlFor="category" data-testid="category">
-                <input type="radio" name="category" id={ e.id } value={ e.id } />
-                <span>{e.name}</span>
-              </label>
-            </div>
-          ))}
-        </section>
-        <div>
-          <form>
-            <input
-              type="text"
-              name="search"
-              id=""
-              onChange={ this.onInputChange }
-              value={ search }
-              data-testid="query-input"
-            />
-            <button
-              type="button"
-              data-testid="query-button"
-              onClick={ this.handleClick }
-            >
-              🔎
-            </button>
-          </form>
-          { search.length === zero && (
-            <p data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>)}
+        <main className="main">
+          <section className="categories">
+            <p>Categorias</p>
+            {categoriesList.map((e) => (
+              <div key={ e.id }>
+                <label htmlFor="category" data-testid="category">
+                  <input type="radio" name="category" id={ e.id } value={ e.id } />
+                  <span>{e.name}</span>
+                </label>
+              </div>
+            ))}
+          </section>
           <div>
-            { cards.length === zero
-              ? (<p>{string}</p>)
-              : (
-                <>
-                  { cards.map((product) => (
-                    <div data-testid="product" key={ product.id }>
-                      <p>{product.title}</p>
-                      <p>{product.price}</p>
-                      <img src={ product.thumbnail } alt={ product.title } />
-                    </div>))}
-                </>
-              )}
+            <form>
+              <input
+                type="text"
+                name="search"
+                id=""
+                onChange={ this.onInputChange }
+                value={ search }
+                data-testid="query-input"
+              />
+              <button
+                type="button"
+                data-testid="query-button"
+                onClick={ this.handleClick }
+              >
+                🔎
+              </button>
+            </form>
+            { search.length === zero && (
+              <p data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>)}
+            <div>
+              { cards.length === zero
+                ? (<p>{string}</p>)
+                : (
+                  <>
+                    { cards.map((product) => (
+                      <div data-testid="product" key={ product.id }>
+                        <p>{product.title}</p>
+                        <p>{product.price}</p>
+                        <img src={ product.thumbnail } alt={ product.title } />
+                      </div>))}
+                  </>
+                )}
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </>
     );
   }
 }
