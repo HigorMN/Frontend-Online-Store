@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {
-  getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+  getCategories,
+  getProductsFromCategoryAndQuery,
+  getCategoryById,
+} from '../services/api';
 import Header from './Header';
 
 export default class Home extends Component {
@@ -8,6 +11,7 @@ export default class Home extends Component {
     search: '',
     categoriesList: [],
     cards: [],
+    clicou: false,
   };
 
   componentDidMount() {
@@ -28,19 +32,17 @@ export default class Home extends Component {
   handleClick = async () => {
     const { search } = this.state;
     const products = await getProductsFromCategoryAndQuery(null, search);
-    this.setState({ cards: products.results });
+    this.setState({ cards: products.results, clicou: true });
   };
 
   categoryClick = async ({ target }) => {
-    this.setState({ cards: [] });
     const { value } = target;
-    const products = await getProductsFromCategoryAndQuery(value, null);
-    console.log(products);
+    const products = await getCategoryById(value);
     this.setState({ cards: products.results });
   };
 
   render() {
-    const { search, categoriesList, cards } = this.state;
+    const { search, categoriesList, cards, clicou } = this.state;
     const zero = 0;
     const string = 'Nenhum produto foi encontrado';
 
@@ -56,7 +58,7 @@ export default class Home extends Component {
             <p>Categorias</p>
             {categoriesList.map((e) => (
               <div key={ e.id }>
-                <label htmlFor="category" data-testid="category">
+                <label htmlFor={ e.id } data-testid="category">
                   <input
                     value={ e.id }
                     type="radio"
@@ -75,7 +77,7 @@ export default class Home extends Component {
                 Digite algum termo de pesquisa ou escolha uma categoria.
               </p>)}
             <div>
-              { cards.length === zero
+              { (cards.length === zero && clicou)
                 ? (<p>{string}</p>)
                 : (
                   <div className="product">
