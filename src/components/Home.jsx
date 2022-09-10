@@ -5,6 +5,7 @@ import {
   getProductsFromCategoryAndQuery,
   getCategoryById,
 } from '../services/api';
+import addCardClick from '../services/addCard';
 import Header from './Header';
 
 export default class Home extends Component {
@@ -83,20 +84,27 @@ export default class Home extends Component {
                 : (
                   <div className="product">
                     { cards.map((product) => (
-                      <Link
-                        to={ `/ProductDetail/${product.id}` }
-                        key={ product.id }
-                        data-testid="product-detail-link"
-                      >
-                        <div
-                          data-testid="product"
-                          className="products"
+                      <div className="products" key={ product.id }>
+                        <Link
+                          to={ `/ProductDetail/${product.id}` }
+                          data-testid="product-detail-link"
                         >
-                          <p>{product.title}</p>
-                          <img src={ product.thumbnail } alt={ product.title } />
-                          <p>{product.price}</p>
-                        </div>
-                      </Link>
+                          <div
+                            data-testid="product"
+                          >
+                            <p>{product.title}</p>
+                            <img src={ product.thumbnail } alt={ product.title } />
+                            <p>{product.price}</p>
+                          </div>
+                        </Link>
+                        <button
+                          type="button"
+                          data-testid="product-add-to-cart"
+                          onClick={ () => addCardClick(product) }
+                        >
+                          Adicionar ao Carrinho
+                        </button>
+                      </div>
                     ))}
                   </div>
                 )}
