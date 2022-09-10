@@ -44,13 +44,12 @@ export default class Home extends Component {
 
   getCartLocal = () => JSON.parse(localStorage.getItem('cart'));
 
-  addCardCLick = async ({ target }) => {
-    const { value } = target;
+  addCardCLick = async (product) => {
     if (!JSON.parse(localStorage.getItem('cart'))) {
       localStorage.setItem('cart', JSON.stringify([]));
     }
     const favoritos = this.getCartLocal();
-    localStorage.setItem('cart', JSON.stringify([...favoritos, value]));
+    localStorage.setItem('cart', JSON.stringify([...favoritos, product]));
   };
 
   render() {
@@ -94,15 +93,13 @@ export default class Home extends Component {
                 : (
                   <div className="product">
                     { cards.map((product) => (
-                      <>
+                      <div className="products" key={ product.id }>
                         <Link
                           to={ `/ProductDetail/${product.id}` }
-                          key={ product.id }
                           data-testid="product-detail-link"
                         >
                           <div
                             data-testid="product"
-                            className="products"
                           >
                             <p>{product.title}</p>
                             <img src={ product.thumbnail } alt={ product.title } />
@@ -112,12 +109,11 @@ export default class Home extends Component {
                         <button
                           type="button"
                           data-testid="product-add-to-cart"
-                          value={ product.id }
-                          onClick={ this.addCardCLick }
+                          onClick={ () => this.addCardCLick(product) }
                         >
                           Adicionar ao Carrinho
                         </button>
-                      </>
+                      </div>
                     ))}
                   </div>
                 )}
