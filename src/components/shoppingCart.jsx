@@ -9,10 +9,15 @@ export default class shoppingCart extends Component {
     this.fetchCart();
   }
 
-  fetchCart = async () => {
+  fetchCart = () => {
     const cart = localStorage.getItem('cart');
     const products = JSON.parse(cart);
     this.setState({ cart: products || [] });
+  };
+
+  repeated = (r) => {
+    const comparacao = !this[JSON.stringify(r)] && (this[JSON.stringify(r)] = true);
+    return comparacao;
   };
 
   render() {
@@ -24,16 +29,17 @@ export default class shoppingCart extends Component {
             <h1 data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
             </h1>)
-          : cart.map((product) => (
-            <div key={ product.id }>
-              <img src={ product.thumbnail } alt={ product.title } />
-              <p data-testid="shopping-cart-product-name">{product.title}</p>
-              <p>{product.price}</p>
-              <p data-testid="shopping-cart-product-quantity">
-                {`Quantidade: ${cart.filter((id) => id.id === product.id).length}`}
-              </p>
-            </div>
-          ))}
+          : cart.filter((repetidos) => this.repeated(repetidos), Object.create(null))
+            .map((product) => (
+              <div key={ product.id }>
+                <img src={ product.thumbnail } alt={ product.title } />
+                <p data-testid="shopping-cart-product-name">{product.title}</p>
+                <p>{product.price}</p>
+                <p data-testid="shopping-cart-product-quantity">
+                  {`Quantidade: ${cart.filter((id) => id.id === product.id).length}`}
+                </p>
+              </div>
+            ))}
       </div>
     );
   }
