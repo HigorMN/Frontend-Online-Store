@@ -18,12 +18,22 @@ export default class Detail extends Component {
     this.setState({ product: result });
   };
 
+  getCartLocal = () => JSON.parse(localStorage.getItem('cart'));
+
+  addCardCLick = async (product) => {
+    if (!JSON.parse(localStorage.getItem('cart'))) {
+      localStorage.setItem('cart', JSON.stringify([]));
+    }
+    const favoritos = this.getCartLocal();
+    localStorage.setItem('cart', JSON.stringify([...favoritos, product]));
+  };
+
   render() {
     const { product } = this.state;
 
     return (
       <>
-        <Header />
+        <Header search="" onInputChange={ () => {} } onClick={ () => {} } />
         <div>
           <p data-testid="product-detail-name">{product.title}</p>
           <img
@@ -32,7 +42,13 @@ export default class Detail extends Component {
             alt={ product.title }
           />
           <p data-testid="product-detail-price">{product.price}</p>
-          <p>{product.id}</p>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => this.addCardCLick(product) }
+          >
+            Adicionar ao Carrinho
+          </button>
         </div>
       </>
     );
