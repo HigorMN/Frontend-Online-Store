@@ -24,6 +24,7 @@ export default class shoppingCart extends Component {
     const { cart } = this.state;
     return (
       <div>
+        <h1>Carrinho de compras</h1>
         {cart.length === 0
           ? (
             <h1 data-testid="shopping-cart-empty-message">
