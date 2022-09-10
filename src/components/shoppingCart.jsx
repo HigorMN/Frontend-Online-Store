@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import addCardClick from '../services/addCard';
 
 export default class shoppingCart extends Component {
   state = {
@@ -10,18 +11,14 @@ export default class shoppingCart extends Component {
   }
 
   fetchCart = () => {
-    const cart = localStorage.getItem('cart');
-    const products = JSON.parse(cart);
-    this.setState({ cart: products || [] });
+    const cartList = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log(cartList);
+    this.setState({ cart: cartList });
   };
 
-  repeated = (r) => {
-    const comparacao = !this[r.id] && (this[r.id] = true);
-    return comparacao;
-  };
-
-  increaseClick = () => {
-
+  increaseClick = (product) => {
+    addCardClick(product);
+    this.fetchCart();
   };
 
   render() {
@@ -34,7 +31,10 @@ export default class shoppingCart extends Component {
             <h1 data-testid="shopping-cart-empty-message">
               Seu carrinho está vazio
             </h1>)
-          : cart.filter((repetidos) => this.repeated(repetidos), Object.create(null))
+          : cart.filter(function repeated(r) {
+            const compare = !this[JSON.stringify(r)] && (this[JSON.stringify(r)] = true);
+            return compare;
+          }, Object.create(null))
             .map((product) => (
               <div key={ product.id }>
                 <img src={ product.thumbnail } alt={ product.title } />
@@ -51,7 +51,12 @@ export default class shoppingCart extends Component {
                   <p data-testid="shopping-cart-product-quantity">
                     {cart.filter((id) => id.id === product.id).length}
                   </p>
-                  <button type="button" data-testid="product-decrease-quantity">-</button>
+                  <button
+                    type="button"
+                    data-testid="product-decrease-quantity"
+                  >
+                    -
+                  </button>
                   <button type="button" data-testid="remove-product">Remove</button>
                 </div>
               </div>
