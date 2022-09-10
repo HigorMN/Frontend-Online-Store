@@ -12,12 +12,18 @@ export default class shoppingCart extends Component {
 
   fetchCart = () => {
     const cartList = JSON.parse(localStorage.getItem('cart')) || [];
-    console.log(cartList);
     this.setState({ cart: cartList });
   };
 
   increaseClick = (product) => {
     addCardClick(product);
+    this.fetchCart();
+  };
+
+  decreaseClick = (product) => {
+    const getCartLocal = JSON.parse(localStorage.getItem('cart'));
+    const s = getCartLocal.splice(product.id, getCartLocal.length - 1);
+    localStorage.setItem('cart', JSON.stringify(s));
     this.fetchCart();
   };
 
@@ -54,6 +60,7 @@ export default class shoppingCart extends Component {
                   <button
                     type="button"
                     data-testid="product-decrease-quantity"
+                    onClick={ () => this.decreaseClick(product) }
                   >
                     -
                   </button>
