@@ -16,7 +16,7 @@ export default class shoppingCart extends Component {
   };
 
   repeated = (r) => {
-    const comparacao = !this[JSON.stringify(r)] && (this[JSON.stringify(r)] = true);
+    const comparacao = !this[r.id] && (this[r.id] = true);
     return comparacao;
   };
 
