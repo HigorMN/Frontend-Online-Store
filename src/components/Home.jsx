@@ -5,6 +5,7 @@ import {
   getProductsFromCategoryAndQuery,
   getCategoryById,
 } from '../services/api';
+import addCardClick from '../services/addCard';
 import Header from './Header';
 
 export default class Home extends Component {
@@ -40,16 +41,6 @@ export default class Home extends Component {
     const { value } = target;
     const products = await getCategoryById(value);
     this.setState({ cards: products.results });
-  };
-
-  getCartLocal = () => JSON.parse(localStorage.getItem('cart'));
-
-  addCardCLick = async (product) => {
-    if (!JSON.parse(localStorage.getItem('cart'))) {
-      localStorage.setItem('cart', JSON.stringify([]));
-    }
-    const favoritos = this.getCartLocal();
-    localStorage.setItem('cart', JSON.stringify([...favoritos, product]));
   };
 
   render() {
@@ -109,7 +100,7 @@ export default class Home extends Component {
                         <button
                           type="button"
                           data-testid="product-add-to-cart"
-                          onClick={ () => this.addCardCLick(product) }
+                          onClick={ () => addCardClick(product) }
                         >
                           Adicionar ao Carrinho
                         </button>

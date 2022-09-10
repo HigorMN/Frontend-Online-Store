@@ -20,6 +20,10 @@ export default class shoppingCart extends Component {
     return comparacao;
   };
 
+  increaseClick = () => {
+
+  };
+
   render() {
     const { cart } = this.state;
     return (
@@ -36,9 +40,20 @@ export default class shoppingCart extends Component {
                 <img src={ product.thumbnail } alt={ product.title } />
                 <p data-testid="shopping-cart-product-name">{product.title}</p>
                 <p>{product.price}</p>
-                <p data-testid="shopping-cart-product-quantity">
-                  {`Quantidade: ${cart.filter((id) => id.id === product.id).length}`}
-                </p>
+                <div className="cart-quantity">
+                  <button
+                    type="button"
+                    data-testid="product-increase-quantity"
+                    onClick={ () => this.increaseClick(product) }
+                  >
+                    +
+                  </button>
+                  <p data-testid="shopping-cart-product-quantity">
+                    {cart.filter((id) => id.id === product.id).length}
+                  </p>
+                  <button type="button" data-testid="product-decrease-quantity">-</button>
+                  <button type="button" data-testid="remove-product">Remove</button>
+                </div>
               </div>
             ))}
       </div>

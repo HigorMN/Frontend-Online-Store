@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { getProductById } from '../services/api';
+import addCardClick from '../services/addCard';
 
 export default class Detail extends Component {
   state = {
@@ -16,16 +17,6 @@ export default class Detail extends Component {
     const { match: { params: { id } } } = this.props;
     const result = await getProductById(id);
     this.setState({ product: result });
-  };
-
-  getCartLocal = () => JSON.parse(localStorage.getItem('cart'));
-
-  addCardCLick = async (product) => {
-    if (!JSON.parse(localStorage.getItem('cart'))) {
-      localStorage.setItem('cart', JSON.stringify([]));
-    }
-    const favoritos = this.getCartLocal();
-    localStorage.setItem('cart', JSON.stringify([...favoritos, product]));
   };
 
   render() {
@@ -45,7 +36,7 @@ export default class Detail extends Component {
           <button
             type="button"
             data-testid="product-detail-add-to-cart"
-            onClick={ () => this.addCardCLick(product) }
+            onClick={ () => addCardClick(product) }
           >
             Adicionar ao Carrinho
           </button>
