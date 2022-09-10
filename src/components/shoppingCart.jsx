@@ -20,10 +20,21 @@ export default class shoppingCart extends Component {
     this.fetchCart();
   };
 
-  decreaseClick = (product) => {
+  decreaseClick = async (product) => {
     const getCartLocal = JSON.parse(localStorage.getItem('cart'));
-    const s = getCartLocal.splice(product.id, getCartLocal.length - 1);
-    localStorage.setItem('cart', JSON.stringify(s));
+    const filterIndex = getCartLocal.map((e) => e.id).lastIndexOf(product.id);
+    const filter = getCartLocal.filter((e) => e.id === product.id);
+    if (filter.length !== 1) {
+      getCartLocal.splice(filterIndex, 1);
+      localStorage.setItem('cart', JSON.stringify(getCartLocal));
+    }
+    this.fetchCart();
+  };
+
+  removeClick = (product) => {
+    const getCartLocal = JSON.parse(localStorage.getItem('cart'));
+    const removeAll = getCartLocal.filter((e) => e.id !== product.id);
+    localStorage.setItem('cart', JSON.stringify(removeAll));
     this.fetchCart();
   };
 
@@ -38,7 +49,7 @@ export default class shoppingCart extends Component {
               Seu carrinho está vazio
             </h1>)
           : cart.filter(function repeated(r) {
-            const compare = !this[JSON.stringify(r)] && (this[JSON.stringify(r)] = true);
+            const compare = !this[r.id] && (this[r.id] = true);
             return compare;
           }, Object.create(null))
             .map((product) => (
@@ -64,7 +75,13 @@ export default class shoppingCart extends Component {
                   >
                     -
                   </button>
-                  <button type="button" data-testid="remove-product">Remove</button>
+                  <button
+                    type="button"
+                    data-testid="remove-product"
+                    onClick={ () => this.removeClick(product) }
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
             ))}
