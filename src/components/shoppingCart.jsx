@@ -29,7 +29,9 @@ export default class shoppingCart extends Component {
               <img src={ product.thumbnail } alt={ product.title } />
               <p data-testid="shopping-cart-product-name">{product.title}</p>
               <p>{product.price}</p>
-              <p data-testid="shopping-cart-product-quantity">01</p>
+              <p data-testid="shopping-cart-product-quantity">
+                {`Quantidade: ${cart.filter((id) => id.id === product.id).length}`}
+              </p>
             </div>
           ))}
       </div>
