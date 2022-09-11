@@ -50,3 +50,23 @@
 .header nav {
   margin-right: 67.82px;
 }
+
+@media only screen and ( max-width : 764px ) {
+
+  .header form {
+    margin-left: 20px;
+  }
+
+  .header .input-search {
+    width: 100px;
+  }
+
+  .logo-header img {
+    height: 50px;
+  }
+
+  .header nav {
+    margin-right: 20px;
+  }
+
+}

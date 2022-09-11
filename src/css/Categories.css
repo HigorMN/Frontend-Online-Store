@@ -1,0 +1,45 @@
+.categories {
+  background-color: white;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.05);
+  margin-right: 20px;
+  padding: 25px;
+  width: 20%;
+}
+
+.categories h1 {
+  border-bottom: 1px solid #b0b3bb;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 31px;
+  padding-bottom: 27px;
+  width: 90%;
+}
+
+.input-categories {
+  color: #444955;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 4px 0;
+  width: 100%;
+}
+
+.input-categories span:hover {
+  border-bottom: 1px solid #003be5;
+  color: #003be5;
+}
+
+.input-categories input {
+  display: none;
+}
+
+@media only screen and ( max-width : 764px ) {
+
+  .categories {
+    width: 30%;
+  }
+
+  .input-categories {
+    font-size: 18px;
+  }
+
+}

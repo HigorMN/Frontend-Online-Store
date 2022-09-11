@@ -57,9 +57,9 @@ export default class Home extends Component {
         />
         <main className="main">
           <section className="categories">
-            <p>Categorias</p>
+            <h1>Categorias</h1>
             {categoriesList.map((e) => (
-              <div key={ e.id }>
+              <div key={ e.id } className="input-categories">
                 <label htmlFor={ e.id } data-testid="category">
                   <input
                     value={ e.id }
@@ -73,7 +73,7 @@ export default class Home extends Component {
               </div>
             ))}
           </section>
-          <div>
+          <div className="products-container">
             { search.length === zero && (
               <p data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.
