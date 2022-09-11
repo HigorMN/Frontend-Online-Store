@@ -3,22 +3,6 @@
   padding: 0;
 }
 
-.header {
-  align-items: center;
-  background-color: #003be5;
-  border: 1px solid black;
-  display: flex;
-  height: 90px;
-  justify-content: space-around;
-  text-align: center;
-  width: 100%;
-}
-
-.header img {
-  height: 30px;
-  width: 30px;
-}
-
 .main {
   display: flex;
   margin-top: 5px;
