@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Vector from '../images/Vector.png';
 
 export default class Header extends React.Component {
   render() {
@@ -34,7 +35,7 @@ export default class Header extends React.Component {
             <img
               width="50"
               height="50"
-              src="https://images-ext-1.discordapp.net/external/W35H3hl6dwLex3iaIdbhQbJCV9dqo1WjIBWwP_8CIeM/https/static.vecteezy.com/system/resources/previews/004/999/463/original/shopping-cart-icon-illustration-free-vector.jpg?width=793&height=660"
+              src={ Vector }
               alt="Cart-img"
             />
           </Link>
