@@ -84,7 +84,14 @@ body {
   font-size: 16px;
   font-weight: 600;
   padding: 13px 35px;
+  transition: 0.3s;
   width: 90%;
+}
+
+.button-addCard:hover {
+  background-color: #23aa79;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .cart-quantity {
