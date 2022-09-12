@@ -34,13 +34,13 @@ export default class Home extends Component {
   handleClick = async () => {
     const { search } = this.state;
     const products = await getProductsFromCategoryAndQuery(null, search);
-    this.setState({ cards: products.results, clicou: true });
+    this.setState({ cards: products.results || [], clicou: true });
   };
 
   categoryClick = async ({ target }) => {
     const { value } = target;
     const products = await getCategoryById(value);
-    this.setState({ cards: products.results });
+    this.setState({ cards: products.results || [] });
   };
 
   render() {
@@ -74,13 +74,21 @@ export default class Home extends Component {
             ))}
           </section>
           <div className="products-container">
-            { search.length === zero && (
-              <p data-testid="home-initial-message">
-                Digite algum termo de pesquisa ou escolha uma categoria.
-              </p>)}
+            { (cards.length === zero && search.length === zero) && (
+              <div className="text-center">
+                <h1>VOCÊ AINDA NÃO</h1>
+                <h1>REALIZOU UMA BUSCA</h1>
+                <p data-testid="home-initial-message">
+                  Digite algum termo de pesquisa ou escolha uma categoria.
+                </p>
+              </div>)}
             <div>
               { (cards.length === zero && clicou)
-                ? (<p>{string}</p>)
+                ? (
+                  <div className="text-center">
+                    <h1>{string}</h1>
+                    <p>Digite outro termo de pesquisa ou escolha uma categoria</p>
+                  </div>)
                 : (
                   <div className="product">
                     { cards.map((product) => (
@@ -88,19 +96,26 @@ export default class Home extends Component {
                         <Link
                           to={ `/ProductDetail/${product.id}` }
                           data-testid="product-detail-link"
+                          className="link"
                         >
                           <div
                             data-testid="product"
                           >
-                            <p>{product.title}</p>
                             <img src={ product.thumbnail } alt={ product.title } />
-                            <p>{product.price}</p>
+                            <div className="text-products">
+                              <h3>{product.title}</h3>
+                            </div>
+                            <div className="products-price">
+                              <p>R$</p>
+                              <h1>{product.price}</h1>
+                            </div>
                           </div>
                         </Link>
                         <button
                           type="button"
                           data-testid="product-add-to-cart"
                           onClick={ () => addCardClick(product) }
+                          className="button-addCard"
                         >
                           Adicionar ao Carrinho
                         </button>

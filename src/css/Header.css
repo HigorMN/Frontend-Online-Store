@@ -11,7 +11,8 @@
 
 .header form {
   display: flex;
-  margin-left: 64px;
+  margin: 0 60px;
+  width: 100%;
 }
 
 .button-header img {
@@ -38,6 +39,10 @@
   width: 208px;
 }
 
+.logo-header {
+  width: 100%;
+}
+
 .logo-header img {
   height: 65px;
 }
@@ -48,7 +53,8 @@
 }
 
 .header nav {
-  margin-right: 67.82px;
+  margin: 0 60px;
+  width: 100%;
 }
 
 @media only screen and ( max-width : 764px ) {
@@ -61,12 +67,18 @@
     width: 100px;
   }
 
+  .logo-header {
+    width: 100%;
+  }
+
   .logo-header img {
     height: 50px;
+    text-align: center;
   }
 
   .header nav {
     margin-right: 20px;
+    text-align: right;
   }
 
 }
