@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import searchIMG from '../images/search.png';
+import cart from '../images/cart.png';
+import logo from '../images/logo.png';
 
 export default class Header extends React.Component {
   render() {
@@ -16,25 +19,27 @@ export default class Header extends React.Component {
             value={ search }
             placeholder="Digite o que você busca"
             data-testid="query-input"
+            className="input-search"
           />
           <button
             type="button"
             data-testid="query-button"
             onClick={ onClick }
+            className="button-header"
           >
-            🔎
+            <img src={ searchIMG } alt="btn" />
           </button>
         </form>
-        <div>
-          <h1>Front-end</h1>
-          <p>online store</p>
+        <div className="logo-header">
+          <img src={ logo } alt="logo" />
         </div>
-        <nav>
+        <div />
+        <nav className="cart-header">
           <Link to="/cart" data-testid="shopping-cart-button">
             <img
               width="50"
               height="50"
-              src="https://images-ext-1.discordapp.net/external/W35H3hl6dwLex3iaIdbhQbJCV9dqo1WjIBWwP_8CIeM/https/static.vecteezy.com/system/resources/previews/004/999/463/original/shopping-cart-icon-illustration-free-vector.jpg?width=793&height=660"
+              src={ cart }
               alt="Cart-img"
             />
           </Link>

@@ -3,31 +3,17 @@
   padding: 0;
 }
 
-.header {
-  align-items: center;
-  border: 1px solid black;
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  width: 100%;
-}
+body {
+  background-color: #ececec;
 
-.header img {
-  height: 30px;
-  width: 30px;
 }
 
 .main {
   display: flex;
-  margin-top: 5px;
 }
 
-.categories {
-  border: 1px solid black;
-  margin-left: 10px;
-  margin-right: 20px;
-  min-width: 250px;
-  padding: 20px;
+.products-container {
+  width: 80%;
 }
 
 .product {
@@ -35,19 +21,77 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .products {
-  border: 1px solid black;
-  height: 200px;
-  margin: 5px;
+  background-color: white;
+  box-shadow: 2.7px 2.7px 5.5px rgba(0, 0, 0, 0.05);
+  height: 358px;
+  margin: 13.5px;
   text-align: center;
-  width: 250px;
+  width: 278px;
 }
 
 .products img {
-  width: 100px;
+  height: 200px;
+  margin-top: 17px;
+}
+
+.link {
+  color: black;
+  text-decoration: none;
+}
+
+.text-products {
+  height: 35px;
+  margin: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+}
+
+.text-products h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.products-price {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.products-price p {
+  color: #b0b3bb;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 5px;
+}
+
+.products-price h1 {
+  color: #444955;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.button-addCard {
+  background-color: #31c28d;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 13px 35px;
+  transition: 0.3s;
+  width: 90%;
+}
+
+.button-addCard:hover {
+  background-color: #23aa79;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .cart-quantity {
@@ -57,4 +101,28 @@
 .cart-quantity button {
   margin: 0 5px;
   padding: 0 5px;
+}
+
+.text-center {
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 45%;
+}
+
+.text-center h1 {
+  color: #31c28d;
+  font-size: 30px;
+  font-weight: 600;
+  max-width: 351px;
+  text-transform: uppercase;
+}
+
+.text-center p {
+  color: #94979d;
+  font-size: 20px;
+  font-weight: 400;
+  margin: auto;
+  margin-top: 12px;
+  max-width: 347px;
 }
