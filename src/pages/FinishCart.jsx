@@ -49,7 +49,6 @@ export default class FinishCart extends Component {
     const vCpf = !cpf.length === CPF_VALID;
     const vAddress = !address.length > VALID_NUMBER;
     const vPayment = payment.length === 0;
-    console.log(vPayment);
 
     if (vName || vEmail || vPhone || vCep || vCpf || vAddress || vPayment) {
       this.setState({ validate: true });
