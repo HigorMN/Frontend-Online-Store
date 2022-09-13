@@ -126,3 +126,10 @@ body {
   margin-top: 12px;
   max-width: 347px;
 }
+
+.fretegratis {
+  margin-left: 180px;
+  max-height: 29px;
+  max-width: 49px;
+  position: absolute;
+}

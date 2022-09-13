@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import addCardClick from '../services/addCard';
 
 export default class shoppingCart extends Component {
@@ -16,7 +17,11 @@ export default class shoppingCart extends Component {
   };
 
   increaseClick = (product) => {
-    addCardClick(product);
+    const { cart } = this.state;
+    const filter = cart.filter((e) => e.id === product.id).length;
+    if (filter < product.available_quantity) {
+      addCardClick(product);
+    }
     this.fetchCart();
   };
 
@@ -85,6 +90,9 @@ export default class shoppingCart extends Component {
                 </div>
               </div>
             ))}
+        <Link to="/cart/FinishCart" data-testid="checkout-products">
+          Finalizar compra
+        </Link>
       </div>
     );
   }
