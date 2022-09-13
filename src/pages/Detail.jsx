@@ -4,52 +4,77 @@ import Header from '../components/Header';
 import { getProductById } from '../services/api';
 import addCardClick from '../services/addCard';
 
-const minCharacters = 3;
+const NUMBER_ARRAY = 5;
+const VALID_NUMBER = 3;
 
 export default class Detail extends Component {
   state = {
     product: {},
     inputEmail: '',
     inputTextArea: '',
-    inputRadio: '',
+    evaluation: 0,
+    evaliationSave: [],
     validate: false,
-    isChecked: false,
   };
 
   componentDidMount() {
     this.getProduct();
+    this.getEvaluationLocal();
   }
 
+  getEvaluationLocal = () => {
+    const { match: { params: { id } } } = this.props;
+    const getEvaluation = JSON.parse(localStorage.getItem(id));
+    this.setState({ evaliationSave: getEvaluation || [] });
+  };
+
   getProduct = async () => {
-    const {
-      match: {
-        params: { id },
-      },
-    } = this.props;
+    const { match: { params: { id } } } = this.props;
     const result = await getProductById(id);
     this.setState({ product: result });
   };
 
   validateClick = () => {
-    const { inputEmail, inputTextArea } = this.state;
-    const validateInputEmail = inputEmail.includes('@')
-    && inputEmail.length > minCharacters;
-    const validateTextArea = inputTextArea.length > minCharacters;
-    const validateInputRadio = isChecked;
-    const valid = validateInputEmail && validateTextArea && validateInputRadio;
-    this.setState({ validate: valid });
+    const { inputEmail, inputTextArea, evaluation, product } = this.state;
+    const validEmail = !(inputEmail.includes('@') && inputEmail.length > VALID_NUMBER);
+    const valid2 = !(inputTextArea.length >= VALID_NUMBER || Number(evaluation) > 0);
+
+    if (validEmail || valid2) {
+      this.setState({ validate: true });
+    } else {
+      this.evaluationClick({
+        id: product.id,
+        email: inputEmail,
+        text: inputTextArea,
+        rating: evaluation });
+      this.setState({
+        inputEmail: '',
+        inputTextArea: '',
+        evaluation: 0,
+        validate: false,
+      });
+      this.getEvaluationLocal();
+    }
+  };
+
+  evaluationClick = (evaluation) => {
+    const { product } = this.state;
+    if (!JSON.parse(localStorage.getItem(product.id))) {
+      localStorage.setItem(product.id, JSON.stringify([]));
+    }
+    const getEvaluation = JSON.parse(localStorage.getItem(product.id));
+    localStorage.setItem(product.id, JSON.stringify([...getEvaluation, evaluation]));
   };
 
   handleInputChange = ({ target: { value, name } }) => {
     this.setState({ [name]: value });
-    if (checked === true) {
-      this.setState({ isChecked: checked });
-    }
   };
 
   render() {
-    const { product, inputEmail, inputTextArea, isChecked } = this.state;
-
+    const {
+      product,
+      inputEmail,
+      inputTextArea, evaluation, validate, evaliationSave } = this.state;
     return (
       <>
         <Header search="" onInputChange={ () => {} } onClick={ () => {} } />
@@ -69,77 +94,59 @@ export default class Detail extends Component {
             Adicionar ao Carrinho
           </button>
         </div>
-        <div>
-          <form action="">
-            <p>Avaliações</p>
-            <label htmlFor="email">
-              <input
-                type="email"
-                data-testid="product-detail-email"
-                name="inputEmail"
-                value={ inputEmail }
-                id="email"
-                onChange={ this.handleInputChange }
-              />
-            </label>
-            <label htmlFor="inputRadio">
-              <input
-                type="radio"
-                name="inputRadio"
-                value={ 1 }
-                checked={ isChecked }
-                data-testid="${1}-rating"
-                onChange={ this.handleInputChange }
-              />
-              <input
-                type="radio"
-                name="inputRadio"
-                value={ 2 }
-                checked={ isChecked }
-                data-testid="${2}-rating"
-                onChange={ this.handleInputChange }
-              />
-              <input
-                type="radio"
-                name="inputRadio"
-                value={ 3 }
-                checked={ isChecked }
-                data-testid="${3}-rating"
-                onChange={ this.handleInputChange }
-              />
-              <input
-                type="radio"
-                name="inputRadio"
-                value={ 4 }
-                checked={ isChecked }
-                data-testid="${4}-rating"
-                onChange={ this.handleInputChange }
-              />
-              <input
-                type="radio"
-                name="inputRadio"
-                value={ 5 }
-                checked={ isChecked }
-                data-testid="${5}-rating"
-                onChange={ this.handleInputChange }
-              />
-            </label>
-            <textarea
-              name="inputTextArea"
-              id=""
-              data-testid="product-detail-evaluation"
-              value={ inputTextArea }
+        <form action="">
+          <p>Avaliações</p>
+          {validate && <p data-testid="error-msg">Campos inválidos</p>}
+          <label htmlFor="email">
+            <input
+              type="email"
+              data-testid="product-detail-email"
+              name="inputEmail"
+              value={ inputEmail }
+              id="email"
               onChange={ this.handleInputChange }
             />
-            <button
-              type="submit"
-              data-testid="submit-review-btn"
-              onClick={ this.validateClick }
-            >
-              Avaliar
-            </button>
-          </form>
-        </div>
+          </label>
+          <div>
+            {[...Array(NUMBER_ARRAY)].map((item, index) => {
+              const rating = index + 1;
+              return (
+                <label htmlFor={ rating } key={ rating } value={ evaluation }>
+                  <input
+                    type="radio"
+                    name="evaluation"
+                    id={ rating }
+                    value={ rating }
+                    // checked={ checked }
+                    data-testid={ `${rating}-rating` }
+                    onChange={ this.handleInputChange }
+                  />
+                </label>
+              );
+            })}
+          </div>
+          <textarea
+            name="inputTextArea"
+            id=""
+            data-testid="product-detail-evaluation"
+            value={ inputTextArea }
+            onChange={ this.handleInputChange }
+          />
+          <button
+            type="button"
+            data-testid="submit-review-btn"
+            onClick={ this.validateClick }
+          >
+            Avaliar
+          </button>
+        </form>
+        {evaliationSave.map((e, index) => (
+          <div key={ index }>
+            <p data-testid="review-card-email">{e.email}</p>
+            <p data-testid="review-card-rating">{e.rating}</p>
+            <p data-testid="review-card-evaluation">{e.text}</p>
+          </div>
+        ))}
       </>
     );
   }
