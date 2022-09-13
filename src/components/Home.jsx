@@ -7,6 +7,7 @@ import {
 } from '../services/api';
 import addCardClick from '../services/addCard';
 import Header from './Header';
+import fretegratis from '../images/fretegratis.png';
 
 export default class Home extends Component {
   state = {
@@ -115,6 +116,13 @@ export default class Home extends Component {
                           <div
                             data-testid="product"
                           >
+                            {product.shipping.free_shipping && (
+                              <img
+                                src={ fretegratis }
+                                alt="frete gratis"
+                                data-testid="free-shipping"
+                                className="fretegratis"
+                              />)}
                             <img src={ product.thumbnail } alt={ product.title } />
                             <div className="text-products">
                               <h3>{product.title}</h3>
