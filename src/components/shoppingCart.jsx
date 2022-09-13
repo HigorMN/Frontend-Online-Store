@@ -17,7 +17,11 @@ export default class shoppingCart extends Component {
   };
 
   increaseClick = (product) => {
-    addCardClick(product);
+    const { cart } = this.state;
+    const filter = cart.filter((e) => e.id === product.id).length;
+    if (filter < product.available_quantity) {
+      addCardClick(product);
+    }
     this.fetchCart();
   };
 
