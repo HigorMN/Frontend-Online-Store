@@ -7,7 +7,7 @@ import logo from '../images/logo.png';
 
 export default class Header extends React.Component {
   render() {
-    const { search, onInputChange, onClick } = this.props;
+    const { search, onInputChange, onClick, cartContent } = this.props;
     return (
       <header className="header">
         <form>
@@ -43,6 +43,7 @@ export default class Header extends React.Component {
               alt="Cart-img"
             />
           </Link>
+          <p data-testid="shopping-cart-size">{cartContent}</p>
         </nav>
       </header>
     );
@@ -53,4 +54,5 @@ Header.propTypes = {
   search: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
+  cartContent: PropTypes.number.isRequired,
 };

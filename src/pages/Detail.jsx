@@ -15,11 +15,13 @@ export default class Detail extends Component {
     evaluation: 0,
     evaliationSave: [],
     validate: false,
+    cartContent: 0,
   };
 
   componentDidMount() {
     this.getProduct();
     this.getEvaluationLocal();
+    this.getCartNumber();
   }
 
   getEvaluationLocal = () => {
@@ -69,14 +71,34 @@ export default class Detail extends Component {
     this.setState({ [name]: value });
   };
 
+  getCartNumber = () => {
+    const getLocal = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = getLocal.length;
+    this.setState({ cartContent: count });
+  };
+
+  addCart = (product) => {
+    addCardClick(product);
+    this.getCartNumber();
+  };
+
   render() {
     const {
       product,
       inputEmail,
-      inputTextArea, evaluation, validate, evaliationSave } = this.state;
+      inputTextArea,
+      evaluation,
+      validate,
+      evaliationSave,
+      cartContent } = this.state;
     return (
       <>
-        <Header search="" onInputChange={ () => {} } onClick={ () => {} } />
+        <Header
+          search=""
+          onInputChange={ () => {} }
+          onClick={ () => {} }
+          cartContent={ cartContent }
+        />
         <div>
           <p data-testid="product-detail-name">{product.title}</p>
           <img
@@ -88,7 +110,7 @@ export default class Detail extends Component {
           <button
             type="button"
             data-testid="product-detail-add-to-cart"
-            onClick={ () => addCardClick(product) }
+            onClick={ () => this.addCart(product) }
           >
             Adicionar ao Carrinho
           </button>

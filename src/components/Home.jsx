@@ -14,16 +14,29 @@ export default class Home extends Component {
     categoriesList: [],
     cards: [],
     clicou: false,
+    cartContent: 0,
   };
 
   componentDidMount() {
     this.fetchAPIgetCategories();
+    this.getCartNumber();
   }
+
+  getCartNumber = () => {
+    const getLocal = JSON.parse(localStorage.getItem('cart')) || [];
+    const count = getLocal.length;
+    this.setState({ cartContent: count });
+  };
 
   onInputChange = ({ target }) => {
     const { name, type } = target;
     const value = type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
+  };
+
+  addCart = (product) => {
+    addCardClick(product);
+    this.getCartNumber();
   };
 
   fetchAPIgetCategories = async () => {
@@ -44,7 +57,7 @@ export default class Home extends Component {
   };
 
   render() {
-    const { search, categoriesList, cards, clicou } = this.state;
+    const { search, categoriesList, cards, clicou, cartContent } = this.state;
     const zero = 0;
     const string = 'Nenhum produto foi encontrado';
 
@@ -54,6 +67,7 @@ export default class Home extends Component {
           search={ search }
           onInputChange={ this.onInputChange }
           onClick={ this.handleClick }
+          cartContent={ cartContent }
         />
         <main className="main">
           <section className="categories">
@@ -114,7 +128,7 @@ export default class Home extends Component {
                         <button
                           type="button"
                           data-testid="product-add-to-cart"
-                          onClick={ () => addCardClick(product) }
+                          onClick={ () => this.addCart(product) }
                           className="button-addCard"
                         >
                           Adicionar ao Carrinho
