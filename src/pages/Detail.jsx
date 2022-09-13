@@ -35,7 +35,7 @@ export default class Detail extends Component {
   };
 
   validateClick = () => {
-    const { inputEmail, inputTextArea, evaluation, product } = this.state;
+    const { inputEmail, inputTextArea, evaluation } = this.state;
     const validEmail = !(inputEmail.includes('@') && inputEmail.length > VALID_NUMBER);
     const valid2 = !(inputTextArea.length >= VALID_NUMBER || Number(evaluation) > 0);
 
@@ -43,7 +43,6 @@ export default class Detail extends Component {
       this.setState({ validate: true });
     } else {
       this.evaluationClick({
-        id: product.id,
         email: inputEmail,
         text: inputTextArea,
         rating: evaluation });
@@ -117,7 +116,6 @@ export default class Detail extends Component {
                     name="evaluation"
                     id={ rating }
                     value={ rating }
-                    // checked={ checked }
                     data-testid={ `${rating}-rating` }
                     onChange={ this.handleInputChange }
                   />
