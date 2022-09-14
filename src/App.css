@@ -133,3 +133,24 @@ body {
   max-width: 49px;
   position: absolute;
 }
+
+.back {
+  color: #2fc18c;
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  height: 18px;
+  left: 46px;
+  position: absolute;
+  text-decoration: none;
+  top: 129px;
+  width: 80px;
+}
+
+.back p {
+  margin-left: 12px;
+}
+
+.back p:hover {
+  color: #1aa773;
+}

@@ -6,6 +6,7 @@ import shoppingCart from './components/shoppingCart';
 import Detail from './pages/Detail';
 import './css/Header.css';
 import './css/Categories.css';
+import './css/Detail.css';
 import FinishCart from './pages/FinishCart';
 
 class App extends React.Component {

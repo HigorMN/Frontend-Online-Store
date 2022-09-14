@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import searchIMG from '../images/search.png';
 import cart from '../images/cart.png';
 import logo from '../images/logo.png';
 
 export default class Header extends React.Component {
   render() {
-    const { search, onInputChange, onClick, cartContent } = this.props;
+    const { search, onInputChange, onClick, cartContent, redirectHeader } = this.props;
     return (
       <header className="header">
+        {redirectHeader && <Redirect to="/" />}
         <form>
           <input
             type="text"
@@ -55,4 +56,5 @@ Header.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   cartContent: PropTypes.number.isRequired,
+  redirectHeader: PropTypes.bool.isRequired,
 };

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import { getProductById } from '../services/api';
 import addCardClick from '../services/addCard';
+import back from '../images/back.png';
 
 const NUMBER_ARRAY = 5;
 const VALID_NUMBER = 3;
@@ -16,6 +18,10 @@ export default class Detail extends Component {
     evaliationSave: [],
     validate: false,
     cartContent: 0,
+    redirectHeader: false,
+    search: '',
+    image: '',
+    attributes: [],
   };
 
   componentDidMount() {
@@ -33,7 +39,8 @@ export default class Detail extends Component {
   getProduct = async () => {
     const { match: { params: { id } } } = this.props;
     const result = await getProductById(id);
-    this.setState({ product: result });
+    const img = result.pictures[0].url;
+    this.setState({ product: result, image: img, attributes: result.attributes });
   };
 
   validateClick = () => {
@@ -82,6 +89,10 @@ export default class Detail extends Component {
     this.getCartNumber();
   };
 
+  onInputChange = ({ target }) => {
+    this.setState({ search: target.value, redirectHeader: true });
+  };
+
   render() {
     const {
       product,
@@ -90,31 +101,60 @@ export default class Detail extends Component {
       evaluation,
       validate,
       evaliationSave,
-      cartContent } = this.state;
+      cartContent,
+      redirectHeader,
+      image,
+      attributes,
+      search } = this.state;
     return (
       <>
         <Header
-          search=""
-          onInputChange={ () => {} }
+          search={ search }
+          onInputChange={ this.onInputChange }
           onClick={ () => {} }
           cartContent={ cartContent }
+          redirectHeader={ redirectHeader }
         />
-        <div>
-          <p data-testid="product-detail-name">{product.title}</p>
-          <img
-            data-testid="product-detail-image"
-            src={ product.thumbnail }
-            alt={ product.title }
-          />
-          <p data-testid="product-detail-price">{product.price}</p>
-          <button
-            type="button"
-            data-testid="product-detail-add-to-cart"
-            onClick={ () => this.addCart(product) }
-          >
-            Adicionar ao Carrinho
-          </button>
-        </div>
+        <Link to="/" className="back">
+          <img src={ back } alt="Voltar" />
+          <p>Voltar</p>
+        </Link>
+        <section className="container-product-detail">
+          <div className="img-product-detail">
+            <p data-testid="product-detail-name">{product.title}</p>
+            <img
+              data-testid="product-detail-image"
+              src={ image }
+              alt={ product.title }
+            />
+          </div>
+          <div className="margin" />
+          <div className="esp-product-detail">
+            <h1>Especificações técnicas</h1>
+            <ul className="detail-ul">
+              {attributes.map((e, index) => (
+                <li key={ index }>
+                  <p>{`${e.name}:`}</p>
+                  <p>{e.values[0].name}</p>
+                </li>
+              ))}
+            </ul>
+            <div className="valor-detail">
+              <h4>R$</h4>
+              <p data-testid="product-detail-price" className="p">
+                {`${product.price}`}
+              </p>
+              <button
+                type="button"
+                data-testid="product-detail-add-to-cart"
+                className="button-addCard-detail"
+                onClick={ () => this.addCart(product) }
+              >
+                Adicionar ao Carrinho
+              </button>
+            </div>
+          </div>
+        </section>
         <form action="">
           <p>Avaliações</p>
           {validate && <p data-testid="error-msg">Campos inválidos</p>}
