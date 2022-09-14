@@ -33,7 +33,7 @@
 .img-product-detail img {
   margin-top: 25px;
   max-height: 364.83px;
-  width: 80%;
+  width: 70%;
 }
 
 .esp-product-detail {
@@ -51,9 +51,9 @@
 }
 
 .detail-ul {
+  height: 396px;
   margin-left: 113px;
   margin-top: 25px;
-  max-height: 400px;
   overflow: hidden;
 }
 
@@ -74,7 +74,7 @@
   align-items: center;
   display: flex;
   height: 50px;
-  margin-left: 90px;
+  margin-left: 80px;
   margin-top: 30px;
 }
 
