@@ -1,7 +1,7 @@
 .container-product-detail {
+  background-color: whitesmoke;
   display: flex;
   justify-content: space-between;
-  margin-left: 38px;
 }
 
 .margin {
@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   height: 516px;
-  margin: 65px auto;
+  margin: 75px auto;
   max-width: 488px;
   width: 70%;
 }
@@ -111,4 +111,86 @@
   background-color: #23aa79;
   cursor: pointer;
   transition: 0.3s;
+}
+
+.evaluation-container {
+  background-color: white;
+  height: 340px;
+  margin: 2%;
+}
+
+.evaluation-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  padding: 30px;
+  text-align: center;
+}
+
+.evaluation-inputs {
+  align-items: center;
+  margin: auto;
+  max-width: 488px;
+  width: 100%;
+}
+
+.evaluation-email-input {
+  margin-bottom: 10px;
+  margin-right: 20px;
+  padding: 5px;
+  width: 70%;
+}
+
+.evaluation-label-rating {
+  margin: 3px;
+}
+
+.evaluation-message-container {
+  margin: auto;
+  max-width: 488px;
+  width: 100%;
+}
+
+.evaluation-message-container textarea {
+  height: 100px;
+  padding: 10px;
+  width: 100%;
+}
+
+.btn-evaluation {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.evaluations {
+  background-color: white;
+  margin: 6px 2%;
+  min-height: 86px;
+}
+
+.evaluations-email-rating {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.evaluations-email, .evaluations-rating {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  margin-right: 76px;
+  padding-left: 40px;
+  padding-top: 20px;
+}
+
+.evaluations-text {
+  color: #94979d;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  margin-left: 40px;
+  margin-top: 10px;
 }

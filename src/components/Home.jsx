@@ -69,6 +69,7 @@ export default class Home extends Component {
           onInputChange={ this.onInputChange }
           onClick={ this.handleClick }
           cartContent={ cartContent }
+          redirectHeader={ false }
         />
         <main className="main">
           <section className="categories">

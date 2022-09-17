@@ -11,7 +11,7 @@ export default class Header extends React.Component {
     return (
       <header className="header">
         {redirectHeader && <Redirect to="/" />}
-        <form>
+        <div className="search-header">
           <input
             type="text"
             name="search"
@@ -30,21 +30,22 @@ export default class Header extends React.Component {
           >
             <img src={ searchIMG } alt="btn" />
           </button>
-        </form>
+        </div>
         <div className="logo-header">
           <img src={ logo } alt="logo" />
         </div>
-        <div />
         <nav className="cart-header">
-          <Link to="/cart" data-testid="shopping-cart-button">
+          <Link to="/cart" data-testid="shopping-cart-button" className="header-link">
             <img
               width="50"
               height="50"
               src={ cart }
               alt="Cart-img"
             />
+            <div className="counter-header">
+              <p data-testid="shopping-cart-size">{cartContent}</p>
+            </div>
           </Link>
-          <p data-testid="shopping-cart-size">{cartContent}</p>
         </nav>
       </header>
     );

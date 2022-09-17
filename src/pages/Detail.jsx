@@ -103,9 +103,7 @@ export default class Detail extends Component {
       evaliationSave,
       cartContent,
       redirectHeader,
-      image,
-      attributes,
-      search } = this.state;
+      image, attributes, search } = this.state;
     return (
       <>
         <Header
@@ -155,24 +153,32 @@ export default class Detail extends Component {
             </div>
           </div>
         </section>
-        <form action="">
-          <p>Avaliações</p>
+        <div className="evaluation-container">
+          <h1 className="evaluation-title">Avaliações</h1>
           {validate && <p data-testid="error-msg">Campos inválidos</p>}
-          <label htmlFor="email">
-            <input
-              type="email"
-              data-testid="product-detail-email"
-              name="inputEmail"
-              value={ inputEmail }
-              id="email"
-              onChange={ this.handleInputChange }
-            />
-          </label>
-          <div>
+          <div className="evaluation-inputs">
+            <label htmlFor="email">
+              <input
+                type="email"
+                data-testid="product-detail-email"
+                name="inputEmail"
+                value={ inputEmail }
+                id="email"
+                placeholder="Email"
+                onChange={ this.handleInputChange }
+                className="evaluation-email-input"
+              />
+            </label>
             {[...Array(NUMBER_ARRAY)].map((item, index) => {
               const rating = index + 1;
               return (
-                <label htmlFor={ rating } key={ rating } value={ evaluation }>
+                <label
+                  htmlFor={ rating }
+                  key={ rating }
+                  value={ evaluation }
+                  className="evaluation-label-rating"
+                >
+                  <i />
                   <input
                     type="radio"
                     name="evaluation"
@@ -185,26 +191,49 @@ export default class Detail extends Component {
               );
             })}
           </div>
-          <textarea
-            name="inputTextArea"
-            id=""
-            data-testid="product-detail-evaluation"
-            value={ inputTextArea }
-            onChange={ this.handleInputChange }
-          />
-          <button
-            type="button"
-            data-testid="submit-review-btn"
-            onClick={ this.validateClick }
-          >
-            Avaliar
-          </button>
-        </form>
+          <div className="evaluation-message-container">
+            <textarea
+              name="inputTextArea"
+              id=""
+              data-testid="product-detail-evaluation"
+              value={ inputTextArea }
+              placeholder="Mensagem (opcional)"
+              onChange={ this.handleInputChange }
+            />
+          </div>
+          <div className="btn-evaluation">
+            <button
+              type="button"
+              data-testid="submit-review-btn"
+              onClick={ this.validateClick }
+              className="button-addCard-detail"
+            >
+              Avaliar
+            </button>
+          </div>
+        </div>
         {evaliationSave.map((e, index) => (
-          <div key={ index }>
-            <p data-testid="review-card-email">{e.email}</p>
-            <p data-testid="review-card-rating">{e.rating}</p>
-            <p data-testid="review-card-evaluation">{e.text}</p>
+          <div key={ index } className="evaluations">
+            <div className="evaluations-email-rating">
+              <p
+                data-testid="review-card-email"
+                className="evaluations-email"
+              >
+                {e.email}
+              </p>
+              <p
+                data-testid="review-card-rating"
+                className="evaluations-rating"
+              >
+                {e.rating}
+              </p>
+            </div>
+            <p
+              data-testid="review-card-evaluation"
+              className="evaluations-text"
+            >
+              {e.text}
+            </p>
           </div>
         ))}
       </>
