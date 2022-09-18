@@ -75,10 +75,108 @@
   width: 20px;
 }
 
-@media only screen and ( max-width : 764px ) {
+@media screen and ( max-width : 764px ) {
 
-  .header form {
-    margin-left: 20px;
+  .search-header {
+    margin: 0 2%;
   }
 
+  .logo-header img {
+    height: 50px;
+  }
+
+  .header .input-search {
+    width: 170px;
+  }
+
+  .logo-header {
+    margin-right: 0;
+    width: 100%;
+  }
+}
+
+@media screen and ( max-width : 540px ) {
+
+  .header {
+    flex-wrap: wrap;
+    height: 100px;
+  }
+
+  .header .input-search {
+    width: 100%;
+  }
+
+  .header :nth-child( 1 ) {
+    order: 2;
+  }
+
+  .header :nth-child( 2 ) {
+    order: 1;
+  }
+
+  .header :nth-child( 3 ) {
+    order: 3;
+  }
+
+  .logo-header {
+    width: 100%;
+  }
+
+  .logo-header img {
+    height: 45px;
+  }
+
+  .counter-header {
+    right: 105px;
+    top: 55px;
+  }
+
+  .cart-header {
+    width: 35%;
+  }
+}
+
+@media screen and ( max-width : 360px ) {
+
+  .header {
+    flex-wrap: wrap;
+    height: 130px;
+  }
+
+  .search-header {
+    margin: 0 5%;
+  }
+
+  .header .input-search {
+    width: 178px;
+  }
+
+  .header :nth-child( 1 ) {
+    order: 1;
+  }
+
+  .header :nth-child( 2 ) {
+    order: 0;
+  }
+
+  .header :nth-child( 3 ) {
+    order: 2;
+  }
+
+  .logo-header {
+    width: 100%;
+  }
+
+  .logo-header img {
+    height: 45px;
+  }
+
+  .counter-header {
+    right: 20px;
+    top: 80px;
+  }
+
+  .cart-header {
+    width: 0;
+  }
 }
