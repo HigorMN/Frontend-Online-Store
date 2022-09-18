@@ -124,9 +124,11 @@ export default class shoppingCart extends Component {
                           >
                             -
                           </button>
-                          <p data-testid="shopping-cart-product-quantity">
-                            {cart.filter((id) => id.id === product.id).length}
-                          </p>
+                          <div className="quantity-product">
+                            <p data-testid="shopping-cart-product-quantity">
+                              {cart.filter((id) => id.id === product.id).length}
+                            </p>
+                          </div>
                           <button
                             type="button"
                             data-testid="product-increase-quantity"

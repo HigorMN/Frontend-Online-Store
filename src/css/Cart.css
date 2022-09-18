@@ -51,6 +51,24 @@
   width: 97px;
 }
 
+.quantity-product {
+  align-items: center;
+  background-color: #94979d;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+  height: 24px;
+  justify-content: center;
+  text-align: center;
+  width: 24px;
+}
+
+.quantity-product p {
+  padding: 5px;
+}
+
 .cart-price-item, .product-name {
   color: #444955;
   font-size: 16px;
@@ -63,6 +81,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
+  height: 90vh;
   justify-content: center;
   width: 50%;
 }
