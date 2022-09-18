@@ -26,6 +26,8 @@
   line-height: 20px;
   margin: 0 auto;
   margin-top: 45px;
+  max-height: 42px;
+  overflow: hidden;
   text-align: center;
   width: 70%;
 }
