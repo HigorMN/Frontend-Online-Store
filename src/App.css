@@ -41,7 +41,7 @@ body {
   top: 45%;
 }
 
-.text-center h1 {
+.text-center h1, .text-center-cart h1 {
   color: #31c28d;
   font-size: 30px;
   font-weight: 600;
@@ -56,6 +56,14 @@ body {
   margin: auto;
   margin-top: 12px;
   max-width: 347px;
+}
+
+.text-center-cart {
+  left: 43.7%;
+  max-width: 229px;
+  position: absolute;
+  text-align: center;
+  top: 48%;
 }
 
 .fretegratis {
