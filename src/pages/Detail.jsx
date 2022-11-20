@@ -113,7 +113,7 @@ export default class Detail extends Component {
           cartContent={ cartContent }
           redirectHeader={ redirectHeader }
         />
-        <Link to="/" className="back">
+        <Link to="/frontend-online-store/" className="back">
           <img src={ back } alt="Voltar" />
           <p>Voltar</p>
         </Link>

@@ -73,7 +73,7 @@ export default class shoppingCart extends Component {
           cartContent={ cartContent }
           redirectHeader={ redirectHeader }
         />
-        <Link to="/" className="back">
+        <Link to="/frontend-online-store/" className="back">
           <img src={ back } alt="Voltar" />
           <p>Voltar</p>
         </Link>
@@ -156,7 +156,7 @@ export default class shoppingCart extends Component {
               <div className="center" />
               <div>
                 <Link
-                  to="/cart/FinishCart"
+                  to="/frontend-online-store/cart/FinishCart"
                   data-testid="checkout-products"
                   className="checkout-btn"
                 >

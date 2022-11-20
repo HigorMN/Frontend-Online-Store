@@ -110,7 +110,7 @@ export default class Home extends Component {
                     { cards.map((product) => (
                       <div className="products" key={ product.id }>
                         <Link
-                          to={ `/ProductDetail/${product.id}` }
+                          to={ `/frontend-online-store/ProductDetail/${product.id}` }
                           data-testid="product-detail-link"
                           className="link"
                         >

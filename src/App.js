@@ -17,10 +17,18 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ Home } />
-          <Route exact path="/cart" component={ shoppingCart } />
-          <Route exact path="/cart/FinishCart" component={ FinishCart } />
-          <Route exact path="/ProductDetail/:id" component={ Detail } />
+          <Route exact path="/frontend-online-store/" component={ Home } />
+          <Route exact path="/frontend-online-store/cart" component={ shoppingCart } />
+          <Route
+            exact
+            path="/frontend-online-store/cart/FinishCart"
+            component={ FinishCart }
+          />
+          <Route
+            exact
+            path="/frontend-online-store/ProductDetail/:id"
+            component={ Detail }
+          />
         </Switch>
       </BrowserRouter>
     );

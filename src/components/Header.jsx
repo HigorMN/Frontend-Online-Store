@@ -35,7 +35,11 @@ export default class Header extends React.Component {
           <img src={ logo } alt="logo" />
         </div>
         <nav className="cart-header">
-          <Link to="/cart" data-testid="shopping-cart-button" className="header-link">
+          <Link
+            to="/frontend-online-store/cart"
+            data-testid="shopping-cart-button"
+            className="header-link"
+          >
             <img
               width="50"
               height="50"
