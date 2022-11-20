@@ -1,0 +1,146 @@
+.checkout-revise {
+  height: 90vh;
+  width: 50%;
+}
+
+.checkout-form {
+  background-color: white;
+  width: 50%;
+}
+
+.checkout-quant {
+  margin: 0 10px;
+}
+
+.buttons-cart-margin {
+  margin: 24px;
+}
+
+.checkout-name {
+  color: #444955;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.pay-form {
+  margin: 0 40px;
+}
+
+.pay-info-title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  margin: 24px 0;
+}
+
+.inputs-pay-container {
+  margin-bottom: 5px;
+}
+
+.input-info-pay {
+  background-color: white;
+  border: 1px solid #94979d;
+  padding: 5px;
+  width: 45%;
+}
+
+.margin-pay-input {
+  margin: 0 5px;
+}
+
+.input-info-pay-2 {
+  background-color: white;
+  border: 1px solid #94979d;
+  padding: 5px;
+  width: 22.5%;
+}
+
+.input-info-pay-3 {
+  background-color: white;
+  border: 1px solid #94979d;
+  padding: 5px;
+  width: 67.5%;
+}
+
+.input-info-pay-select {
+  background-color: white;
+  border: 1px solid #94979d;
+  color: #94979d;
+  padding: 5px;
+  width: 24%;
+}
+
+.paiment-container {
+  align-items: center;
+  border-bottom: 1px solid #94979d;
+  display: flex;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+  width: 94%;
+}
+
+.ticket {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-right: 100px;
+}
+
+.cart-label {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-label-elo {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.ticket img {
+  height: 36px;
+  width: 57px;
+}
+
+.title-ticket {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  margin-bottom: 24px;
+}
+
+.title-visa {
+  width: 140px;
+}
+
+.input-pay {
+  margin-bottom: 5px;
+}
+
+.margin-cart {
+  margin: 27.5px 0;
+}
+
+.margin-cart-elo {
+  margin: 22px 0;
+}
+
+.master-title {
+  color: #94979d;
+  font-size: 13px;
+}
+
+.btn-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 94%;
+}
+
+.checkout-title {
+  margin: 30px auto;
+  text-align: center;
+}

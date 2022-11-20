@@ -9,6 +9,7 @@ import './css/Categories.css';
 import './css/Detail.css';
 import './css/Home.css';
 import './css/Cart.css';
+import './css/Checkout.css';
 
 import FinishCart from './pages/FinishCart';
 
