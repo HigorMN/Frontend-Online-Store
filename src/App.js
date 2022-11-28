@@ -12,26 +12,29 @@ import './css/Cart.css';
 import './css/Checkout.css';
 
 import FinishCart from './pages/FinishCart';
+import Provider from './Context/myProvider';
 
 class App extends React.Component {
   render() {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/frontend-online-store/" component={ Home } />
-          <Route exact path="/frontend-online-store/cart" component={ shoppingCart } />
-          <Route
-            exact
-            path="/frontend-online-store/cart/FinishCart"
-            component={ FinishCart }
-          />
-          <Route
-            exact
-            path="/frontend-online-store/ProductDetail/:id"
-            component={ Detail }
-          />
-        </Switch>
-      </BrowserRouter>
+      <Provider>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/frontend-online-store/" component={ Home } />
+            <Route exact path="/frontend-online-store/cart" component={ shoppingCart } />
+            <Route
+              exact
+              path="/frontend-online-store/cart/FinishCart"
+              component={ FinishCart }
+            />
+            <Route
+              exact
+              path="/frontend-online-store/ProductDetail/:id"
+              component={ Detail }
+            />
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
