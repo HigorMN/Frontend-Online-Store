@@ -129,17 +129,21 @@
 }
 
 .evaluation-inputs {
-  align-items: center;
+  display: flex;
   margin: auto;
   max-width: 488px;
   width: 100%;
+}
+
+.evaluation-inputs label {
+  width: 70%;
 }
 
 .evaluation-email-input {
   margin-bottom: 10px;
   margin-right: 20px;
   padding: 5px;
-  width: 70%;
+  width: 90%;
 }
 
 .evaluation-label-rating {
