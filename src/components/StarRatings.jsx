@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
+import context from '../Context/myContext';
 
 const FIVE = 5;
 
@@ -21,12 +22,12 @@ const styles = {
 };
 
 export default function StarRatings() {
-  const [currentValue, setCurrentValue] = useState(0);
+  const { evaluation, setEvaluation } = useContext(context);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(FIVE).fill(0);
 
   const handleClick = (value) => {
-    setCurrentValue(value);
+    setEvaluation(value);
   };
 
   const handleMouseOver = (newHoverValue) => {
@@ -47,7 +48,7 @@ export default function StarRatings() {
             onClick={ () => handleClick(index + 1) }
             onMouseOver={ () => handleMouseOver(index + 1) }
             onMouseLeave={ handleMouseLeave }
-            color={ (hoverValue || currentValue) > index ? colors.orange : colors.grey }
+            color={ (hoverValue || evaluation) > index ? colors.orange : colors.grey }
             style={ {
               marginRight: 5,
               cursor: 'pointer',
